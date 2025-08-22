@@ -1,0 +1,19 @@
+{
+	"commons": {
+		"fallbacks": {
+			"notFound": "Página não encontrada"
+		}
+	},
+	"projects": {
+		"title": "Projetos",
+		"description": "Gerencie seus projetos de forma eficiente"
+	},
+	"project": {
+		"title": "Projeto",
+		"description": "Gerencie seus projeto"
+	},
+	"search": {
+		"title": "Busca",
+		"description": "Encontre o que precisa de forma rápida e eficiente"
+	}
+}

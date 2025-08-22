@@ -1,0 +1,19 @@
+{
+	"commons": {
+		"fallbacks": {
+			"notFound": "Page not found"
+		}
+	},
+	"projects": {
+		"title": "Projects",
+		"description": "Manage your projects efficiently"
+	},
+	"project": {
+		"title": "Project",
+		"description": "Manage your project"
+	},
+	"search": {
+		"title": "Search",
+		"description": "Find what you need quickly and efficiently"
+	}
+}
