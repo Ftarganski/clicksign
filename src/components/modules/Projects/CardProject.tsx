@@ -1,16 +1,19 @@
 import { Card, Separator } from '@/components/ui';
 import { Calendar1, CalendarCheck, CircleEllipsis, Star } from 'lucide-react';
 
+import { getHighlightedName } from '@/helpers/helperHighlight';
 import type { Project } from '@/types';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface CardProjectProps {
 	project: Pick<Project, 'name' | 'client' | 'startDate' | 'endDate' | 'isFavorite'> & { imageUrl?: string };
+	highlight?: string;
 }
 
-export const CardProject: FC<CardProjectProps> = ({ project, ...rest }) => {
+export const CardProject: FC<CardProjectProps> = ({ project, highlight = '', ...rest }) => {
 	const { t } = useTranslation();
+
 	return (
 		<Card.Root className='bg-card border-border gap-6 w-[322px] py-0 rounded-2xl' {...rest}>
 			<Card.Header
@@ -26,7 +29,7 @@ export const CardProject: FC<CardProjectProps> = ({ project, ...rest }) => {
 				</div>
 			</Card.Header>
 			<Card.Content className='flex flex-col justify-between gap-2 h-[180px] pb-6'>
-				<div className='text-primary text-2xl font-extrabold'>{project.name}</div>
+				<div className='text-primary text-2xl font-extrabold'>{getHighlightedName(project.name, highlight)}</div>
 				<div className='flex flex-row gap-2'>
 					<div className='text-secondary-foreground text-base font-bold'>{t('project.client')}</div>
 					<div className='text-secondary-foreground text-base font-normal'>{project.client}</div>

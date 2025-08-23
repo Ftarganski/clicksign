@@ -8,7 +8,8 @@
 		},
 		"buttons": {
 			"addProject": "Novo projeto",
-			"back": "Voltar"
+			"back": "Voltar",
+			"removeHistory": "Remover histórico"
 		}
 	},
 	"projects": {
@@ -51,7 +52,7 @@
 		}
 	},
 	"search": {
-		"title": "Busca",
+		"title": "Resultado da busca",
 		"description": "Encontre o que precisa de forma rápida e eficiente"
 	}
 }

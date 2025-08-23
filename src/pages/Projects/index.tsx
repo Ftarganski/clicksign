@@ -1,19 +1,58 @@
-import { EmptyComponent, ListProjects } from '@/components/modules';
-import { PlusCircle } from 'lucide-react';
-
-import { FC } from 'react';
+import { EmptyComponent, ListProjects, SearchComponent } from '@/components/modules';
+import { useListProjects } from '@/hooks/queries';
+import { useNavigate } from '@tanstack/react-router';
+import { PlusCircle, Search } from 'lucide-react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface ProjectsPageProps {}
 
 const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 	const { t } = useTranslation();
+	const [searchValue, setSearchValue] = useState('');
+	const [searchOpen, setSearchOpen] = useState(false);
+	const projects = useListProjects();
+	const navigate = useNavigate();
+	const searchRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		if (!searchOpen) return;
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') setSearchOpen(false);
+		};
+		window.addEventListener('keydown', handleKeyDown);
+		return () => window.removeEventListener('keydown', handleKeyDown);
+	}, [searchOpen]);
+
+	useEffect(() => {
+		if (!searchOpen) return;
+		const handleClick = (e: MouseEvent) => {
+			if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+				setSearchOpen(false);
+			}
+		};
+		document.addEventListener('mousedown', handleClick);
+		return () => document.removeEventListener('mousedown', handleClick);
+	}, [searchOpen]);
+
+	const handleSearchDone = () => {
+		if (searchValue.length < 3) return;
+		const filtered = (projects.mock || []).filter((p: any) => p.name.toLowerCase().includes(searchValue.toLowerCase()));
+		navigate({
+			to: '/projects/search',
+			search: { searchValue, searchResults: JSON.stringify(filtered) },
+		});
+		setSearchOpen(false);
+	};
 
 	// TODO REMOVE
 	const list = false;
 
 	return (
 		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8' {...rest}>
+			<div className='absolute top-7 right-7 items-center justify-end h-full'>
+				<Search className='text-card cursor-pointer' onClick={() => setSearchOpen(true)} />
+			</div>
 			{list ? (
 				<EmptyComponent
 					title={t('projects.emptyList.title')}
@@ -23,7 +62,21 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 					icon={<PlusCircle />}
 				/>
 			) : (
-				<ListProjects />
+				<ListProjects highlight={searchValue} />
+			)}
+
+			{searchOpen && (
+				<div
+					ref={searchRef}
+					className='fixed top-0 left-0 w-full h-20 z-50 bg-secondary flex items-center animate-fade-in'
+				>
+					<SearchComponent
+						value={searchValue}
+						onFilterChange={setSearchValue}
+						placeholder={t('projects.filters.searchPlaceholder')}
+						onSearchDone={handleSearchDone}
+					/>
+				</div>
 			)}
 		</div>
 	);
