@@ -1,12 +1,4 @@
-export type Project = {
-	id: string;
-	name: string;
-	client: string;
-	startDate: string;
-	endDate: string;
-	image: string;
-	isFavorite: boolean;
-};
+import { Project } from '@/types';
 
 const STORAGE_KEY = 'projects';
 

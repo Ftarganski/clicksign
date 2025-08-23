@@ -2,9 +2,9 @@ import { useLocation } from '@tanstack/react-router';
 import { FC, HTMLAttributes } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {}
+export interface HeaderBarProps extends HTMLAttributes<HTMLDivElement> {}
 
-const Header: FC<HeaderProps> = ({ ...rest }) => {
+const HeaderBar: FC<HeaderBarProps> = ({ ...rest }) => {
 	const location = useLocation();
 	const { t } = useTranslation();
 
@@ -19,6 +19,6 @@ const Header: FC<HeaderProps> = ({ ...rest }) => {
 	);
 };
 
-Header.displayName = 'Header';
+HeaderBar.displayName = 'HeaderBar';
 
-export default Header;
+export default HeaderBar;

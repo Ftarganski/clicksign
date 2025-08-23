@@ -11,9 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedSearchIndexRouteImport } from './routes/_authenticated/search/index'
 import { Route as AuthenticatedProjectsIndexRouteImport } from './routes/_authenticated/projects/index'
 import { Route as AuthenticatedProjectsIdRouteImport } from './routes/_authenticated/projects/$id'
+import { Route as AuthenticatedProjectsSearchIndexRouteImport } from './routes/_authenticated/projects/search/index'
+import { Route as AuthenticatedProjectsNewprojectIndexRouteImport } from './routes/_authenticated/projects/newproject/index'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -24,12 +25,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedSearchIndexRoute =
-  AuthenticatedSearchIndexRouteImport.update({
-    id: '/search/',
-    path: '/search/',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
 const AuthenticatedProjectsIndexRoute =
   AuthenticatedProjectsIndexRouteImport.update({
     id: '/projects/',
@@ -41,18 +36,32 @@ const AuthenticatedProjectsIdRoute = AuthenticatedProjectsIdRouteImport.update({
   path: '/projects/$id',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedProjectsSearchIndexRoute =
+  AuthenticatedProjectsSearchIndexRouteImport.update({
+    id: '/projects/search/',
+    path: '/projects/search/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedProjectsNewprojectIndexRoute =
+  AuthenticatedProjectsNewprojectIndexRouteImport.update({
+    id: '/projects/newproject/',
+    path: '/projects/newproject/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
-  '/search': typeof AuthenticatedSearchIndexRoute
+  '/projects/newproject': typeof AuthenticatedProjectsNewprojectIndexRoute
+  '/projects/search': typeof AuthenticatedProjectsSearchIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
-  '/search': typeof AuthenticatedSearchIndexRoute
+  '/projects/newproject': typeof AuthenticatedProjectsNewprojectIndexRoute
+  '/projects/search': typeof AuthenticatedProjectsSearchIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -60,20 +69,32 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_authenticated/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/_authenticated/projects/': typeof AuthenticatedProjectsIndexRoute
-  '/_authenticated/search/': typeof AuthenticatedSearchIndexRoute
+  '/_authenticated/projects/newproject/': typeof AuthenticatedProjectsNewprojectIndexRoute
+  '/_authenticated/projects/search/': typeof AuthenticatedProjectsSearchIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/$id' | '/projects' | '/search'
+  fullPaths:
+    | '/'
+    | '/projects/$id'
+    | '/projects'
+    | '/projects/newproject'
+    | '/projects/search'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/$id' | '/projects' | '/search'
+  to:
+    | '/'
+    | '/projects/$id'
+    | '/projects'
+    | '/projects/newproject'
+    | '/projects/search'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/_authenticated/projects/$id'
     | '/_authenticated/projects/'
-    | '/_authenticated/search/'
+    | '/_authenticated/projects/newproject/'
+    | '/_authenticated/projects/search/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,13 +118,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/search/': {
-      id: '/_authenticated/search/'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof AuthenticatedSearchIndexRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/_authenticated/projects/': {
       id: '/_authenticated/projects/'
       path: '/projects'
@@ -118,19 +132,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProjectsIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/projects/search/': {
+      id: '/_authenticated/projects/search/'
+      path: '/projects/search'
+      fullPath: '/projects/search'
+      preLoaderRoute: typeof AuthenticatedProjectsSearchIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/projects/newproject/': {
+      id: '/_authenticated/projects/newproject/'
+      path: '/projects/newproject'
+      fullPath: '/projects/newproject'
+      preLoaderRoute: typeof AuthenticatedProjectsNewprojectIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
   AuthenticatedProjectsIdRoute: typeof AuthenticatedProjectsIdRoute
   AuthenticatedProjectsIndexRoute: typeof AuthenticatedProjectsIndexRoute
-  AuthenticatedSearchIndexRoute: typeof AuthenticatedSearchIndexRoute
+  AuthenticatedProjectsNewprojectIndexRoute: typeof AuthenticatedProjectsNewprojectIndexRoute
+  AuthenticatedProjectsSearchIndexRoute: typeof AuthenticatedProjectsSearchIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedProjectsIdRoute: AuthenticatedProjectsIdRoute,
   AuthenticatedProjectsIndexRoute: AuthenticatedProjectsIndexRoute,
-  AuthenticatedSearchIndexRoute: AuthenticatedSearchIndexRoute,
+  AuthenticatedProjectsNewprojectIndexRoute:
+    AuthenticatedProjectsNewprojectIndexRoute,
+  AuthenticatedProjectsSearchIndexRoute: AuthenticatedProjectsSearchIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

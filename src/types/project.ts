@@ -4,6 +4,6 @@ export type Project = {
 	client: string;
 	startDate: string;
 	endDate: string;
-	image: string;
+	imageUrl: string;
 	isFavorite: boolean;
 };

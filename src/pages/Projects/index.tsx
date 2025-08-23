@@ -10,15 +10,16 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 	const { t } = useTranslation();
 
 	// TODO REMOVE
-	const list = false;
+	const list = true;
 
 	return (
-		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 px-8 py-10' {...rest}>
+		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8' {...rest}>
 			{list ? (
 				<EmptyComponent
 					title={t('projects.emptyList.title')}
 					description={t('projects.emptyList.description')}
 					button={t('projects.emptyList.button')}
+					linkTo='/projects/newproject'
 					icon={<PlusCircle />}
 				/>
 			) : (

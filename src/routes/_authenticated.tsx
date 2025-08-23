@@ -1,4 +1,4 @@
-import { Header } from '@/components/modules';
+import { HeaderBar } from '@/components/modules';
 
 import { Toaster } from '@/components/ui';
 import { createFileRoute, Outlet } from '@tanstack/react-router';
@@ -13,7 +13,7 @@ export default function AuthLayout() {
 		<Suspense>
 			<Toaster />
 			<div className='flex flex-col h-screen'>
-				<Header />
+				<HeaderBar />
 				<div className='flex-1 min-h-0'>
 					<Outlet />
 				</div>

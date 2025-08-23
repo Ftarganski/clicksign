@@ -22,8 +22,15 @@ export { default as SearchComponent } from './Filters/SearchComponent';
 export type { SearchComponentProps } from './Filters/SearchComponent';
 
 // COMPONENTS
-export { default as Header } from './Header';
-export type { HeaderProps } from './Header';
+
+export { default as NewProjectForm } from './Forms/NewProjectForm';
+export type { NewProjectFormProps } from './Forms/NewProjectForm';
+
+export { default as HeaderBar } from './HeaderBar';
+export type { HeaderBarProps } from './HeaderBar';
+
+export { default as HeaderComponent } from './HeaderComponent';
+export type { HeaderComponentProps } from './HeaderComponent';
 
 export { default as LanguageSelector } from './LanguageSelector';
 export type { LanguageSelectorProps } from './LanguageSelector';

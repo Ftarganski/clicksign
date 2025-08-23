@@ -13,55 +13,43 @@ code {
 
 :root {
 	/* BASE */
-	--background: #dcdcdc;
-	--foreground: #000000;
+	--background: hsla(247, 100%, 98%, 1);
+	--foreground: hsl(224 71% 4%);
 
 	/* PRIMARY */
-	--primary: #695ccd;
-	--primary-foreground: #1f1283;
+	--primary: hsla(247, 75%, 29%, 1);
+	--primary-foreground: hsla(247, 53%, 58%, 1);
 
 	/* SECONDARY */
-	--secondary: #1c1930;
-	--secondary-foreground: #7669cc;
+	--secondary: hsla(247, 32%, 14%, 1);
+	--secondary-foreground: hsla(0, 0%, 44%, 1);
 
-	--card: #ffffff;
-	--card-foreground: #777777;
+	--card: hsl(0 0% 100%);
+	--card-foreground: hsl(224 71% 4%);
+	--popover: hsl(0 0% 100%);
+	--popover-foreground: hsl(224 71% 4%);
 
-	--popover: #ffffff;
-	--popover-foreground: #777777;
-
-	/* MUTED */
-	--muted: #dcdcdc;
-	--muted-foreground: #717171;
-
-	/* ACCENT */
-	--accent: #ffffff;
-	--accent-foreground: #777777;
-
-	/* ALERTS */
-	--destructive: #d00000;
-	--destructive-foreground: #d00000;
-
-	--warning: #ffb300;
-	--warning-foreground: #ffb300;
-
-	--success: #00c853;
-	--success-foreground: #00c853;
+	/* Auxiliary */
+	--muted: hsla(0, 0%, 44%, 1);
+	--muted-foreground: hsla(0, 0%, 86%, 1);
+	--accent: hsl(220 3% 85%);
+	--accent-foreground: hsl(220 1% 15%);
 
 	/* BORDER, INPUT, RING */
-	--border: #ececec;
-	--input: #ffffff;
-	--ring: #acacac;
+	--border: hsla(0, 0%, 86%, 1);
+	--input: hsl(220 13% 91%);
+	--ring: hsl(270 100% 47%);
 
-	/* CHART */
-	--chart-1: #e60012;
-	--chart-2: #bb5d00;
-	--chart-3: #504400;
-	--chart-4: #00c853;
-	--chart-5: #5874d3;
+	/* Status */
+	--destructive: hsl(2 80% 47%);
+	--destructive-foreground: hsl(2 20% 90%);
+	--warning: hsl(38 92% 50%);
+	--warning-foreground: hsl(38 20% 90%);
+	--success: hsl(142 72% 29%);
+	--success-foreground: hsl(142 20% 90%);
 
 	/* RADIUS */
-	--radius: 0.75rem;
+	--radius: 0.5rem;
 }
 
 .dark {

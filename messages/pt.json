@@ -4,7 +4,8 @@
 			"notFound": "Página não encontrada"
 		},
 		"buttons": {
-			"addProject": "Novo projeto"
+			"addProject": "Novo projeto",
+			"back": "Voltar"
 		}
 	},
 	"projects": {
@@ -14,11 +15,33 @@
 			"title": "Nenhum projeto",
 			"description": "Clique no botão abaixo para criar o primeiro e gerenciá-lo.",
 			"button": "Novo Projeto"
+		},
+		"filters": {
+			"favorites": "Apenas Favoritos"
 		}
 	},
 	"project": {
 		"title": "Projeto",
-		"description": "Gerencie seus projeto"
+		"description": "Gerencie seus projeto",
+		"client": "Cliente:",
+		"new": {
+			"title": "Novo Projeto"
+		},
+		"form": {
+			"name": "Nome do Projeto",
+			"namePlaceholder": "Digite o nome do projeto",
+			"client": "Cliente",
+			"clientPlaceholder": "Digite o nome do cliente",
+			"startDate": "Data de Início",
+			"startDatePlaceholder": "Selecione a data de início",
+			"endDate": "Data Final",
+			"endDatePlaceholder": "Selecione a data final",
+			"cover": "Capa do projeto",
+			"selectImage": "Selecionar",
+			"imageAlert": "Escolha uma imagem .jpg ou .png no seu dispositivo",
+			"submit": "Salvar projeto",
+			"required": "(Obrigatório)"
+		}
 	},
 	"search": {
 		"title": "Busca",

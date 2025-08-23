@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui';
+import { Link } from '@tanstack/react-router';
 import { FC, ReactNode } from 'react';
 
 export interface EmptyComponentProps {
@@ -6,18 +7,21 @@ export interface EmptyComponentProps {
 	description?: string;
 	icon?: ReactNode;
 	button?: string;
+	linkTo?: string;
 }
 
-export const EmptyComponent: FC<EmptyComponentProps> = ({ title, description, button, icon, ...rest }) => {
+export const EmptyComponent: FC<EmptyComponentProps> = ({ title, description, button, icon, linkTo, ...rest }) => {
 	return (
-		<div className='flex flex-col gap-10 justify-center items-center bg-card p-4 h-full' {...rest}>
-			<div className='text-2xl font-semibold text-primary-foreground'>{title}</div>
+		<div className='flex flex-col gap-8 justify-center rounded-sm items-center bg-card p-4 h-full' {...rest}>
+			<div className='text-2xl font-semibold text-primary'>{title}</div>
 			<div className='font-normal text-muted'>{description}</div>
 			{button && (
-				<Button variant='default' size='lg' className='rounded-full '>
-					{icon}
-					{button}
-				</Button>
+				<Link to={linkTo}>
+					<Button variant='default' size='lg' className='rounded-full '>
+						{icon}
+						{button}
+					</Button>
+				</Link>
 			)}
 		</div>
 	);
