@@ -4,7 +4,8 @@
 	},
 	"commons": {
 		"fallbacks": {
-			"notFound": "Página não encontrada"
+			"notFound": "Página não encontrada",
+			"noResults": "Sua busca não retornou nenhum projeto"
 		},
 		"buttons": {
 			"addProject": "Novo projeto",

@@ -1,18 +1,25 @@
 import { Button, Input } from '@/components/ui';
 import { useSearchHistory } from '@/hooks/useSearchHistory';
 import { Clock, Search, X } from 'lucide-react';
-import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface SearchComponentProps {
 	value: string;
 	placeholder?: string;
 	onFilterChange: (value: string) => void;
-	onSearchDone?: () => void;
+	onSearchDone?: (value?: string) => void;
 }
 
 const SearchComponent: FC<SearchComponentProps> = ({ value, placeholder, onFilterChange, onSearchDone, ...rest }) => {
 	const { getHistory, addSearch } = useSearchHistory();
 	const [history, setHistory] = useState<string[]>([]);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (inputRef.current) {
+			inputRef.current.focus();
+		}
+	}, []);
 
 	useEffect(() => {
 		setHistory(getHistory());
@@ -29,12 +36,12 @@ const SearchComponent: FC<SearchComponentProps> = ({ value, placeholder, onFilte
 		if (e.key === 'Enter' && value && value.length >= 3) {
 			addSearch(value);
 			setHistory(getHistory());
-			if (onSearchDone) onSearchDone();
+			if (onSearchDone) onSearchDone(value);
 		}
 	};
 
 	const handleSelectHistory = (item: string) => {
-		onFilterChange(item);
+		if (onSearchDone) onSearchDone(item);
 	};
 
 	const handleRemoveHistory = (item: string) => {
@@ -48,6 +55,7 @@ const SearchComponent: FC<SearchComponentProps> = ({ value, placeholder, onFilte
 			<div className='flex items-center gap-2 h-20 relative w-full'>
 				<Search size={16} className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary-foreground' />
 				<Input
+					ref={inputRef}
 					value={value}
 					onChange={handleChange}
 					onKeyDown={handleKeyDown}

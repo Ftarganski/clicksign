@@ -35,12 +35,13 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 		return () => document.removeEventListener('mousedown', handleClick);
 	}, [searchOpen]);
 
-	const handleSearchDone = () => {
-		if (searchValue.length < 3) return;
-		const filtered = (projects.mock || []).filter((p: any) => p.name.toLowerCase().includes(searchValue.toLowerCase()));
+	const handleSearchDone = (val?: string) => {
+		const search = (val ?? searchValue).toLowerCase();
+		if (search.length < 3) return;
+		const filtered = (projects.mock || []).filter((p: any) => (p.name || '').toLowerCase().includes(search));
 		navigate({
 			to: '/projects/search',
-			search: { searchValue, searchResults: JSON.stringify(filtered) },
+			state: { searchValue: val ?? searchValue, searchResults: filtered } as any,
 		});
 		setSearchOpen(false);
 	};
