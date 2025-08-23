@@ -1,12 +1,17 @@
 import { projectApi } from '@/api';
+import { projectsMock } from '@/mocks/projectsMock';
 import type { Project } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 
 export function useListProjects() {
-	return useQuery<Project[]>({
+	const query = useQuery<Project[]>({
 		queryKey: ['projects'],
 		queryFn: () => projectApi.list(),
 	});
+	return {
+		...query,
+		mock: projectsMock,
+	};
 }
 
 export function useGetProject(id: string) {

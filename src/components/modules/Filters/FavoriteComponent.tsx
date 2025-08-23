@@ -11,7 +11,7 @@ const FavoriteComponent: FC<FavoriteComponentProps> = ({ checked, onCheckedChang
 	return (
 		<div className='flex items-center gap-2' {...rest}>
 			<Switch checked={checked} onCheckedChange={onCheckedChange} />
-			<span className='text-base font-normal text-secondary'>{label}</span>
+			<span className='text-base font-normal text-accent-foreground'>{label}</span>
 		</div>
 	);
 };

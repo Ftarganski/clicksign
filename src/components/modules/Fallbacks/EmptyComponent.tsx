@@ -17,7 +17,7 @@ export const EmptyComponent: FC<EmptyComponentProps> = ({ title, description, bu
 			<div className='font-normal text-muted'>{description}</div>
 			{button && (
 				<Link to={linkTo}>
-					<Button variant='default' size='lg' className='rounded-full '>
+					<Button variant='default' size='default' className='rounded-full '>
 						{icon}
 						{button}
 					</Button>

@@ -10,7 +10,7 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 	const { t } = useTranslation();
 
 	// TODO REMOVE
-	const list = true;
+	const list = false;
 
 	return (
 		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8' {...rest}>

@@ -1,4 +1,7 @@
 {
+	"system": {
+		"title": "Gerenciador de Projetos"
+	},
 	"commons": {
 		"fallbacks": {
 			"notFound": "Página não encontrada"
@@ -17,7 +20,11 @@
 			"button": "Novo Projeto"
 		},
 		"filters": {
-			"favorites": "Apenas Favoritos"
+			"favorites": "Apenas Favoritos",
+			"alphabetical": "Ordem Alfabética",
+			"recentStart": "Iniciados mais recente",
+			"closestEnd": "Prazo mais próximo",
+			"searchPlaceholder": "Buscar projetos..."
 		}
 	},
 	"project": {

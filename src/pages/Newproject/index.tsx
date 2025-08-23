@@ -11,7 +11,17 @@ const NewprojectPage: FC<NewprojectPageProps> = ({ ...rest }) => {
 	return (
 		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8 ' {...rest}>
 			<HeaderComponent title={t('project.new.title')} buttonText={t('commons.buttons.back')} />
-			<NewProjectForm />
+			<NewProjectForm
+				onSubmit={function (data: {
+					name: string;
+					client: string;
+					startDate: string;
+					endDate: string;
+					imageUrl?: string | undefined;
+				}): void {
+					throw new Error('Function not implemented.');
+				}}
+			/>
 		</div>
 	);
 };

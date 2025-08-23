@@ -12,7 +12,7 @@ const HeaderComponent: FC<HeaderComponentProps> = ({ title, buttonText, ...rest 
 	return (
 		<div className='flex flex-col items-start w-full' {...rest}>
 			<Link to='/projects'>
-				<Button variant='link' className='!px-0'>
+				<Button variant='link' className='!px-0 hover:cursor-pointer'>
 					<MoveLeft />
 					{buttonText}
 				</Button>

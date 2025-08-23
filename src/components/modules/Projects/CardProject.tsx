@@ -12,7 +12,7 @@ export interface CardProjectProps {
 export const CardProject: FC<CardProjectProps> = ({ project, ...rest }) => {
 	const { t } = useTranslation();
 	return (
-		<Card.Root className='bg-card border-muted gap-6 w-[322px] py-0' {...rest}>
+		<Card.Root className='bg-card border-border gap-6 w-[322px] py-0 rounded-2xl' {...rest}>
 			<Card.Header
 				className='h-[208px] bg-primary rounded-t-2xl pt-6 px-0 flex items-end justify-end bg-cover bg-center'
 				style={{
@@ -22,23 +22,23 @@ export const CardProject: FC<CardProjectProps> = ({ project, ...rest }) => {
 			>
 				<div className='flex text-card flex-row gap-3 mb-4 mr-4'>
 					<Star fill={project.isFavorite ? '#ffb300' : 'none'} />
-					<CircleEllipsis className='text-primary' fill={'#ffffff'} />
+					<CircleEllipsis className='text-primary-foreground' fill={'#ffffff'} />
 				</div>
 			</Card.Header>
 			<Card.Content className='flex flex-col justify-between gap-2 h-[180px] pb-6'>
-				<div className='text-primary-foreground text-2xl font-extrabold'>{project.name}</div>
+				<div className='text-primary text-2xl font-extrabold'>{project.name}</div>
 				<div className='flex flex-row gap-2'>
-					<div className='text-muted-foreground text-base font-bold'>{t('project.client')}</div>
-					<div className='text-muted-foreground text-base font-normal'>{project.client}</div>
+					<div className='text-secondary-foreground text-base font-bold'>{t('project.client')}</div>
+					<div className='text-secondary-foreground text-base font-normal'>{project.client}</div>
 				</div>
 				<Separator />
 				<div className='flex flex-row gap-3'>
-					<Calendar1 className='text-muted-foreground' />
-					<div className='text-muted-foreground text-base font-normal'>{project.startDate}</div>
+					<Calendar1 className='text-secondary-foreground' />
+					<div className='text-secondary-foreground text-base font-normal'>{project.startDate}</div>
 				</div>
 				<div className='flex flex-row gap-3'>
-					<CalendarCheck className='text-muted-foreground' />
-					<div className='text-muted-foreground text-base font-normal'>{project.endDate}</div>
+					<CalendarCheck className='text-secondary-foreground' />
+					<div className='text-secondary-foreground text-base font-normal'>{project.endDate}</div>
 				</div>
 			</Card.Content>
 		</Card.Root>
