@@ -12,8 +12,12 @@ export default function AuthLayout() {
 	return (
 		<Suspense>
 			<Toaster />
-			<Header />
-			<Outlet />
+			<div className='flex flex-col h-screen'>
+				<Header />
+				<div className='flex-1 min-h-0'>
+					<Outlet />
+				</div>
+			</div>
 		</Suspense>
 	);
 }

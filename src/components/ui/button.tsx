@@ -21,7 +21,7 @@ const buttonVariants = cva(
 					'text-background bg-success hover:bg-success/90 focus-visible:ring-success/20 dark:focus-visible:ring-success/40 dark:bg-success/60',
 			},
 			size: {
-				default: 'h-9 px-4 py-2 has-[>svg]:px-3',
+				default: 'h-9 px-8 py-2 has-[>svg]:px-3',
 				sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
 				lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
 				icon: 'size-9',

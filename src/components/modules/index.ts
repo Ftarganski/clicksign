@@ -12,17 +12,14 @@ export { default as NotFoundComponent } from './Fallbacks/NotFoundComponent';
 export type { NotFoundComponentProps } from './Fallbacks/NotFoundComponent';
 
 // FILTERS
-export { default as SearchComponent } from './Filters/SearchComponent';
-export type { SearchComponentProps } from './Filters/SearchComponent';
+export { default as FavoriteComponent } from './Filters/FavoriteComponent';
+export type { FavoriteComponentProps } from './Filters/FavoriteComponent';
 
 export { default as FilterComponent } from './Filters/FilterComponent';
 export type { FilterComponentProps, FilterOption } from './Filters/FilterComponent';
 
-export { default as SortComponent } from './Filters/SortComponent';
-export type { SortComponentProps, SortDirection } from './Filters/SortComponent';
-
-export { default as ViewComponent } from './Filters/ViewComponent';
-export type { ViewComponentProps } from './Filters/ViewComponent';
+export { default as SearchComponent } from './Filters/SearchComponent';
+export type { SearchComponentProps } from './Filters/SearchComponent';
 
 // COMPONENTS
 export { default as Header } from './Header';
@@ -40,3 +37,10 @@ export type { TextTooltipProps } from './TextTooltip';
 // TABLE
 export { default as TableGeneric } from './Table/TableGeneric';
 export type { TableGenericProps } from './Table/TableGeneric';
+
+// PROJECTS
+export { default as CardProject } from './Projects/CardProject';
+export type { CardProjectProps } from './Projects/CardProject';
+
+export { default as ListProjects } from './Projects/ListProjects';
+export type { ListProjectsProps } from './Projects/ListProjects';

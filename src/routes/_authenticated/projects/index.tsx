@@ -9,9 +9,7 @@ export const Route = createFileRoute('/_authenticated/projects/')({
 function ProjectsRoute({ ...rest }) {
 	return (
 		<Fragment {...rest}>
-			<div className='container max-w-[1280px] mx-auto w-full flex flex-col gap-6 '>
-				<ProjectsPage />
-			</div>
+			<ProjectsPage />
 		</Fragment>
 	);
 }

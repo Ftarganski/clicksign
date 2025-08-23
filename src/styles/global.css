@@ -13,7 +13,7 @@ code {
 
 :root {
 	/* BASE */
-	--background: #ffffff;
+	--background: #dcdcdc;
 	--foreground: #000000;
 
 	/* PRIMARY */
@@ -24,19 +24,19 @@ code {
 	--secondary: #1c1930;
 	--secondary-foreground: #7669cc;
 
-	--card: #ff0000;
-	--card-foreground: #ff0000;
+	--card: #ffffff;
+	--card-foreground: #777777;
 
-	--popover: #ff0000;
-	--popover-foreground: #ff0000;
+	--popover: #ffffff;
+	--popover-foreground: #777777;
 
 	/* MUTED */
-	--muted: #717171;
-	--muted-foreground: #494949;
+	--muted: #dcdcdc;
+	--muted-foreground: #717171;
 
 	/* ACCENT */
-	--accent: #ff0000;
-	--accent-foreground: #ff0000;
+	--accent: #ffffff;
+	--accent-foreground: #777777;
 
 	/* ALERTS */
 	--destructive: #d00000;
@@ -49,9 +49,9 @@ code {
 	--success-foreground: #00c853;
 
 	/* BORDER, INPUT, RING */
-	--border: #f1d1ad;
-	--input: #f1d1ad;
-	--ring: #554839;
+	--border: #ececec;
+	--input: #ffffff;
+	--ring: #acacac;
 
 	/* CHART */
 	--chart-1: #e60012;

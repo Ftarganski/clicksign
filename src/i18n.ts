@@ -2,7 +2,6 @@ import enTrans from '../messages/en.json';
 import ptTrans from '../messages/pt.json';
 
 import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {
@@ -17,23 +16,17 @@ export const langs: LangProps[] = [
 	{ value: 'en', label: 'English', flag: '🇺🇸' },
 ];
 
-i18n
-	.use(LanguageDetector)
-	.use(initReactI18next)
-	.init({
-		resources,
-		ns: ['translation'],
-		fallbackLng: 'pt',
-		detection: {
-			order: ['localStorage', 'querystring', 'navigator'],
-			caches: ['localstorage'],
-		},
-		interpolation: {
-			escapeValue: false,
-			prefix: '{',
-			suffix: '}',
-		},
-		react: { useSuspense: false },
-	});
+i18n.use(initReactI18next).init({
+	resources,
+	ns: ['translation'],
+	lng: 'pt',
+	fallbackLng: 'pt',
+	interpolation: {
+		escapeValue: false,
+		prefix: '{',
+		suffix: '}',
+	},
+	react: { useSuspense: false },
+});
 
 export default i18n;
