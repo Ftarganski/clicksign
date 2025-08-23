@@ -1,10 +1,33 @@
 import { projectApi } from '@/api';
 import type { Project } from '@/types';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export function useListProjects() {
-	return useQuery<Project[]>({
-		queryKey: ['projects'],
-		queryFn: () => projectApi.list(),
+export function useCreateProject() {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: (project: Project) => projectApi.create(project),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['projects'] });
+		},
+	});
+}
+
+export function useUpdateProject() {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: (project: Project) => projectApi.update(project),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['projects'] });
+		},
+	});
+}
+
+export function useDeleteProject() {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: (id: string) => projectApi.delete(id),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['projects'] });
+		},
 	});
 }

@@ -38,7 +38,7 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 	const handleSearchDone = (val?: string) => {
 		const search = (val ?? searchValue).toLowerCase();
 		if (search.length < 3) return;
-		const filtered = (projects.mock || []).filter((p: any) => (p.name || '').toLowerCase().includes(search));
+		const filtered = (projects.data || []).filter((p: any) => (p.name || '').toLowerCase().includes(search));
 		navigate({
 			to: '/projects/search',
 			state: { searchValue: val ?? searchValue, searchResults: filtered } as any,
@@ -46,15 +46,12 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 		setSearchOpen(false);
 	};
 
-	// TODO REMOVE
-	const list = false;
-
 	return (
 		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8' {...rest}>
 			<div className='absolute top-7 right-7 items-center justify-end h-full'>
 				<Search className='text-card cursor-pointer' onClick={() => setSearchOpen(true)} />
 			</div>
-			{list ? (
+			{!projects.data ? (
 				<EmptyComponent
 					title={t('projects.emptyList.title')}
 					description={t('projects.emptyList.description')}

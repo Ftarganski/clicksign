@@ -1,5 +1,4 @@
 import { projectApi } from '@/api';
-import { projectsMock } from '@/mocks/projectsMock';
 import type { Project } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 
@@ -10,7 +9,6 @@ export function useListProjects() {
 	});
 	return {
 		...query,
-		mock: projectsMock,
 	};
 }
 

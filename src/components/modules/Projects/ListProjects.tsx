@@ -25,15 +25,8 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 		{ value: 'endDate' as keyof Project, label: t('projects.filters.closestEnd') },
 	];
 
-	const allProjects =
-		projects.mock && Array.isArray(projects.mock)
-			? showFavorites
-				? projects.mock.filter((p: any) => p.isFavorite)
-				: projects.mock
-			: [];
-
 	const { data: sortedProjects } = useProcessedData({
-		data: allProjects,
+		data: projects.data || [],
 		sortBy: sortValue,
 		sortDirection: 'asc',
 	});
@@ -43,7 +36,7 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 			<div className='flex flex-row justify-between items-start gap-10 w-full'>
 				<div className='flex flex-row gap-2 items-center'>
 					<div className='text-2xl font-semibold text-primary'>{t('projects.title')}</div>
-					<div className='font-normal text-primary-foreground'>({allProjects.length})</div>
+					<div className='font-normal text-primary-foreground'>({projects.data?.length ?? 0})</div>
 				</div>
 
 				<div className='flex flex-row gap-6 items-center'>
