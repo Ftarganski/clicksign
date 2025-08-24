@@ -1,6 +1,6 @@
 import { projectApi } from '@/api';
 import type { Project } from '@/types';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query';
 
 export function useCreateProject() {
 	const queryClient = useQueryClient();
@@ -12,22 +12,26 @@ export function useCreateProject() {
 	});
 }
 
-export function useUpdateProject() {
+export function useUpdateProject(options?: UseMutationOptions<Project, Error, Project>) {
 	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: (project: Project) => projectApi.update(project),
-		onSuccess: () => {
+		onSuccess: (...args) => {
 			queryClient.invalidateQueries({ queryKey: ['projects'] });
+			options?.onSuccess?.(...args);
 		},
+		onError: options?.onError,
 	});
 }
 
-export function useDeleteProject() {
+export function useDeleteProject(options?: UseMutationOptions<void, Error, string>) {
 	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: (id: string) => projectApi.delete(id),
-		onSuccess: () => {
+		onSuccess: (...args) => {
 			queryClient.invalidateQueries({ queryKey: ['projects'] });
+			options?.onSuccess?.(...args);
 		},
+		onError: options?.onError,
 	});
 }

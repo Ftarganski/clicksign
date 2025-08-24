@@ -2,6 +2,8 @@ import { CardProject, HeaderComponent } from '@/components/modules';
 import { useRouter } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
+export interface SearchPageProps {}
+
 const SearchPage = (props: any) => {
 	const { t } = useTranslation();
 	const router = useRouter();
@@ -21,6 +23,12 @@ const SearchPage = (props: any) => {
 							key={project.id || idx}
 							project={project}
 							highlight={searchValue.length >= 3 ? searchValue : ''}
+							handleEdit={function (): void {
+								throw new Error('Function not implemented.');
+							}}
+							handleDelete={function (): void {
+								throw new Error('Function not implemented.');
+							}}
 						/>
 					))}
 				</div>

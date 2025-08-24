@@ -1,11 +1,20 @@
 import { z } from 'zod';
 
-export const projectSchema = z.object({
-	name: z.string().min(1, 'Por favor, digite ao menos duas palavras'),
-	client: z.string().min(1, 'Por favor, digite ao menos uma palavra'),
-	startDate: z.string().min(1, 'Selecione uma data válida'),
-	endDate: z.string().min(1, 'Selecione uma data válida'),
-	imageUrl: z.string().optional(),
-});
+export const getProjectSchema = (t: (key: string) => string) =>
+	z.object({
+		name: z
+			.string()
+			.min(1, { message: t('project.form.errors.nameRequired') })
+			.refine((val) => val.trim().split(/\s+/).length >= 2, {
+				message: t('project.form.errors.nameMinWords'),
+			}),
+		client: z.string().min(1, { message: t('project.form.errors.clientRequired') }),
+		startDate: z.string().min(1, { message: t('project.form.errors.startDateRequired') }),
+		endDate: z.string().min(1, { message: t('project.form.errors.endDateRequired') }),
+		imageUrl: z.string().optional(),
+	});
 
-export type ProjectFormData = z.infer<typeof projectSchema>;
+const defaultT = (key: string) => key;
+export const projectFormData = getProjectSchema(defaultT);
+
+export type ProjectFormData = z.infer<ReturnType<typeof getProjectSchema>>;

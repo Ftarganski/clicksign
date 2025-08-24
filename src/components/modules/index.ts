@@ -23,8 +23,8 @@ export type { SearchComponentProps } from './Filters/SearchComponent';
 
 // COMPONENTS
 
-export { default as NewProjectForm } from './Forms/NewProjectForm';
-export type { NewProjectFormProps } from './Forms/NewProjectForm';
+export { default as ProjectForm } from './Forms/ProjectForm';
+export type { ProjectFormProps } from './Forms/ProjectForm';
 
 export { default as HeaderBar } from './HeaderBar';
 export type { HeaderBarProps } from './HeaderBar';

@@ -48,15 +48,14 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 
 	return (
 		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8' {...rest}>
-			<div className='absolute top-7 right-7 items-center justify-end h-full'>
+			<div className='absolute top-7 right-7 items-center'>
 				<Search className='text-card cursor-pointer' onClick={() => setSearchOpen(true)} />
 			</div>
-			{!projects.data ? (
+			{!projects.data || projects.data.length === 0 ? (
 				<EmptyComponent
 					title={t('projects.emptyList.title')}
 					description={t('projects.emptyList.description')}
 					button={t('projects.emptyList.button')}
-					linkTo='/projects/newproject'
 					icon={<PlusCircle />}
 				/>
 			) : (

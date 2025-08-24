@@ -10,7 +10,21 @@
 		"buttons": {
 			"addProject": "Novo projeto",
 			"back": "Voltar",
-			"removeHistory": "Remover histórico"
+			"removeHistory": "Remover histórico",
+			"save": "Salvar projeto",
+			"saving": "Salvando projeto...",
+			"edit": "Editar",
+			"delete": "Remover",
+			"cancel": "Cancelar",
+			"confirm": "Confirmar"
+		},
+		"toasts": {
+			"projectCreatedSuccess": "Projeto criado com sucesso!",
+			"projectCreatedError": "Erro ao criar projeto.",
+			"projectUpdatedSuccess": "Projeto atualizado com sucesso!",
+			"projectUpdatedError": "Erro ao atualizar projeto.",
+			"projectDeletedSuccess": "Projeto excluído com sucesso!",
+			"projectDeletedError": "Erro ao excluir projeto."
 		}
 	},
 	"projects": {
@@ -33,10 +47,9 @@
 		"title": "Projeto",
 		"description": "Gerencie seus projeto",
 		"client": "Cliente:",
-		"new": {
-			"title": "Novo Projeto"
-		},
 		"form": {
+			"newTitle": "Novo projeto",
+			"editTitle": "Editar projeto",
 			"name": "Nome do Projeto",
 			"namePlaceholder": "Digite o nome do projeto",
 			"client": "Cliente",
@@ -48,8 +61,18 @@
 			"cover": "Capa do projeto",
 			"selectImage": "Selecionar",
 			"imageAlert": "Escolha uma imagem .jpg ou .png no seu dispositivo",
-			"submit": "Salvar projeto",
-			"required": "(Obrigatório)"
+			"required": "(Obrigatório)",
+			"errors": {
+				"nameRequired": "Por favor, digite o nome do projeto",
+				"nameMinWords": "Por favor, digite ao menos duas palavras",
+				"clientRequired": "Por favor, digite ao menos uma palavra",
+				"startDateRequired": "Selecione uma data válida",
+				"endDateRequired": "Selecione uma data válida"
+			}
+		},
+		"delete": {
+			"title": "Remover projeto",
+			"description": "Essa ação removerá definitivamente o projeto:"
 		}
 	},
 	"search": {

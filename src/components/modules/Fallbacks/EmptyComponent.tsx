@@ -7,16 +7,15 @@ export interface EmptyComponentProps {
 	description?: string;
 	icon?: ReactNode;
 	button?: string;
-	linkTo?: string;
 }
 
-export const EmptyComponent: FC<EmptyComponentProps> = ({ title, description, button, icon, linkTo, ...rest }) => {
+export const EmptyComponent: FC<EmptyComponentProps> = ({ title, description, button, icon, ...rest }) => {
 	return (
 		<div className='flex flex-col gap-8 justify-center rounded-sm items-center bg-card p-4 h-full' {...rest}>
 			<div className='text-2xl font-semibold text-primary'>{title}</div>
 			<div className='font-normal text-muted'>{description}</div>
 			{button && (
-				<Link to={linkTo}>
+				<Link to={'/projects/projectform'} search={{ mode: 'create' }}>
 					<Button variant='default' size='default' className='rounded-full '>
 						{icon}
 						{button}
