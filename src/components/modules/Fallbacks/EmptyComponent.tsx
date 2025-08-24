@@ -12,8 +12,8 @@ export interface EmptyComponentProps {
 export const EmptyComponent: FC<EmptyComponentProps> = ({ title, description, button, icon, ...rest }) => {
 	return (
 		<div className='flex flex-col gap-8 justify-center rounded-sm items-center bg-card p-4 h-full' {...rest}>
-			<div className='text-2xl font-semibold text-primary'>{title}</div>
-			<div className='font-normal text-muted'>{description}</div>
+			<div className='text-2xl text-center font-semibold text-primary'>{title}</div>
+			<div className='font-normal text-center text-muted'>{description}</div>
 			{button && (
 				<Link to={'/projects/projectform'} search={{ mode: 'create' }}>
 					<Button variant='default' size='default' className='rounded-full '>

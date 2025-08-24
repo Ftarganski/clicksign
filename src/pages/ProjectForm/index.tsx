@@ -98,7 +98,7 @@ const ProjectFormPage: FC<ProjectFormPageProps> = ({ ...rest }) => {
 	};
 
 	return (
-		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8 ' {...rest}>
+		<div className='container max-w-[1536px] mx-auto w-full h-full flex flex-col gap-6 p-4 sm:p-8' {...rest}>
 			<HeaderComponent
 				title={mode === 'update' ? t('project.form.editTitle') : t('project.form.newTitle')}
 				buttonText={t('commons.buttons.back')}

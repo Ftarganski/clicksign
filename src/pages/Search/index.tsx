@@ -60,7 +60,7 @@ const SearchPage = (props: any) => {
 	);
 
 	return (
-		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8 ' {...props}>
+		<div className='container max-w-[1536px] mx-auto w-full h-full flex flex-col gap-6 p-8 ' {...props}>
 			<HeaderComponent title={t('search.title')} buttonText={t('commons.buttons.back')} />
 			{results.length === 0 ? (
 				<div className='text-center text-muted pt-10'>{t('commons.fallbacks.noResults', { searchValue })}</div>

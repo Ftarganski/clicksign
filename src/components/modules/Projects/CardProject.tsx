@@ -25,7 +25,7 @@ export const CardProject: FC<CardProjectProps> = ({
 	const { t } = useTranslation();
 
 	return (
-		<Card.Root className='bg-card border-border gap-6 w-[322px] py-0 rounded-2xl' {...rest}>
+		<Card.Root className='bg-card border-border gap-6 w-[300px] py-0 rounded-2xl' {...rest}>
 			<Card.Header
 				className='h-[208px] bg-primary rounded-t-2xl pt-6 px-0 flex items-end justify-end bg-cover bg-center'
 				style={{

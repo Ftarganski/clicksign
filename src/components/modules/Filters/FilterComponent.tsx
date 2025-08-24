@@ -16,7 +16,7 @@ export interface FilterComponentProps {
 const FilterComponent: FC<FilterComponentProps> = ({ value, options, onFilterChange, ...rest }) => {
 	return (
 		<Select.Root value={value} onValueChange={onFilterChange} {...rest}>
-			<Select.Trigger className='min-w-52 '>
+			<Select.Trigger className='min-w-52 w-full '>
 				<Select.Value />
 			</Select.Trigger>
 			<Select.Content>

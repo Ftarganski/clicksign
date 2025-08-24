@@ -79,14 +79,14 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 	);
 
 	return (
-		<div className='flex flex-col items-start gap-10 h-full' {...rest}>
-			<div className='flex flex-row justify-between items-start gap-10 w-full'>
+		<div className='flex flex-col items-start gap-6 sm:gap-10 h-full' {...rest}>
+			<div className='flex flex-col md:flex-row sm:justify-between sm:items-start gap-4 sm:gap-10 w-full'>
 				<div className='flex flex-row gap-2 items-center'>
 					<div className='text-2xl font-semibold text-primary'>{t('projects.title')}</div>
 					<div className='font-normal text-primary-foreground'>({projects.data?.length ?? 0})</div>
 				</div>
 
-				<div className='flex flex-row gap-6 items-center'>
+				<div className='flex flex-col md:flex-row gap-2 md:gap-4 items-stretch md:items-center w-full md:w-auto'>
 					<FavoriteComponent
 						label={t('projects.filters.favorites')}
 						checked={showFavorites}
@@ -98,14 +98,14 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 						onFilterChange={(v) => setSortValue(v as keyof Project)}
 					/>
 					<Link to={'/projects/projectform'} search={{ mode: 'create' }}>
-						<Button variant='default' size='default' className='rounded-full '>
+						<Button variant='default' size='default' className='rounded-full w-full md:w-auto'>
 							<PlusCircle />
 							{t('projects.emptyList.button')}
 						</Button>
 					</Link>
 				</div>
 			</div>
-			<div className='flex flex-wrap gap-4 w-full'>
+			<div className='flex flex-col sm:flex-row flex-wrap gap-4 w-full'>
 				{showFavorites && sortedProjects.length === 0 ? (
 					<div className='text-center w-full text-muted pt-10'>{t('commons.fallbacks.noFavorites')}</div>
 				) : (

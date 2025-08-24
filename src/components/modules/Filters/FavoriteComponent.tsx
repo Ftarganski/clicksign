@@ -9,7 +9,7 @@ export interface FavoriteComponentProps {
 
 const FavoriteComponent: FC<FavoriteComponentProps> = ({ checked, onCheckedChange, label, ...rest }) => {
 	return (
-		<div className='flex items-center gap-2' {...rest}>
+		<div className='flex items-center justify-center gap-2 w-full' {...rest}>
 			<Switch checked={checked} onCheckedChange={onCheckedChange} />
 			<span className='text-base font-normal text-accent-foreground'>{label}</span>
 		</div>

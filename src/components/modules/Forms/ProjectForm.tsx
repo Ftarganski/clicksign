@@ -35,12 +35,9 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 		<Form.Root
 			form={form}
 			onSubmit={form.handleSubmit(onSubmit ?? (() => {}))}
-			className='w-full rounded-md flex flex-col border items-center border-border p-8 mb-8'
+			className='w-full rounded-md flex flex-col border items-center border-border p-4 sm:p-8'
 		>
-			<div className='flex flex-col gap-6 w-[720px] '>
-				<div className='mb-2 text-sm text-muted-foreground text-right w-full'>
-					{mode === 'update' ? t('project.form.editTitle') : t('project.form.newTitle')}
-				</div>
+			<div className='flex flex-col gap-6 w-full max-w-[720px] sm:w-[720px]'>
 				<Form.Field
 					name='name'
 					render={({ field }) => (
@@ -71,7 +68,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 						</Form.Item>
 					)}
 				/>
-				<div className='flex flex-row gap-4'>
+				<div className='flex flex-col sm:flex-row gap-4'>
 					<Form.Field
 						name='startDate'
 						render={({ field }) => (
