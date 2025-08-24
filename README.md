@@ -2,10 +2,10 @@
 
 <div align="center">
 
-![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
-![Vite](https://img.shields.io/badge/Vite-7.0.6-646CFF?style=for-the-badge&logo=vite)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
-![Node.js](https://img.shields.io/badge/Node.js-18.3+-green?style=for-the-badge&logo=node.js)
+![React](https://img.shields.io/badge/React-19+-blue?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-6+-646CFF?style=for-the-badge&logo=vite)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4+-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Node.js](https://img.shields.io/badge/Node.js-20+-green?style=for-the-badge&logo=node.js)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 **Bem-vindo ao Clicksign Test SPA!** 🎉
