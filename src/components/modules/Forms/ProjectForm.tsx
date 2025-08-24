@@ -1,7 +1,7 @@
 import { Button, DatePicker, Form, Input } from '@/components/ui';
 import { getProjectSchema } from '@/validators';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Calendar1, CalendarCheck, Upload } from 'lucide-react';
+import { Calendar1, CalendarCheck, Trash, Upload } from 'lucide-react';
 import { FC, useEffect, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -35,7 +35,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 		<Form.Root
 			form={form}
 			onSubmit={form.handleSubmit(onSubmit ?? (() => {}))}
-			className='w-full rounded-md flex flex-col border items-center border-border p-8'
+			className='w-full rounded-md flex flex-col border items-center border-border p-8 mb-8'
 		>
 			<div className='flex flex-col gap-6 w-[720px] '>
 				<div className='mb-2 text-sm text-muted-foreground text-right w-full'>
@@ -142,31 +142,53 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 						<Form.Item className='col-span-1 md:col-span-2'>
 							<Form.Label className='text-primary-foreground'>{t('project.form.cover')}</Form.Label>
 							<Form.Control>
-								<div className='border border-dashed border-border rounded-lg p-6 flex flex-col items-center gap-4'>
-									<input
-										ref={fileInputRef}
-										type='file'
-										accept='.jpg,.jpeg,.png'
-										onChange={(e) => {
-											const file = e.target.files?.[0];
-											if (file && (file.type === 'image/png' || file.type === 'image/jpeg')) {
-												const reader = new FileReader();
-												reader.onload = () => field.onChange(reader.result as string);
-												reader.readAsDataURL(file);
-											} else {
-												field.onChange('');
-												alert('Escolha uma imagem .jpg ou .png');
-											}
-										}}
-										className='hidden'
-										id='image-upload'
-									/>
-									<Upload className='text-muted' />
-									<span className='text-sm text-muted'>{t('project.form.imageAlert')}</span>
-									<Button variant='outline' className='rounded-full' onClick={() => fileInputRef.current?.click()}>
-										{t('project.form.selectImage')}
-									</Button>
-								</div>
+								{field.value ? (
+									<div className='relative w-full flex items-center justify-center'>
+										<img
+											src={field.value}
+											alt={t('project.form.cover')}
+											className='rounded-lg object-cover w-full h-96 cover-full border border-border shadow'
+										/>
+										<div
+											className='absolute flex items-center justify-center top-4 right-4 rounded-full bg-card h-8 w-8 hover:cursor-pointer'
+											onClick={() => field.onChange('')}
+										>
+											<Trash className='text-muted' size={20} />
+										</div>
+									</div>
+								) : (
+									<div className='border border-dashed border-border rounded-lg p-6 gap-4 flex flex-col items-center w-full'>
+										<input
+											ref={fileInputRef}
+											type='file'
+											accept='.jpg,.jpeg,.png'
+											onChange={(e) => {
+												const file = e.target.files?.[0];
+												if (file && (file.type === 'image/png' || file.type === 'image/jpeg')) {
+													const reader = new FileReader();
+													reader.onload = () => field.onChange(reader.result as string);
+													reader.readAsDataURL(file);
+												} else {
+													field.onChange('');
+													alert('Escolha uma imagem .jpg ou .png');
+												}
+											}}
+											className='hidden'
+											id='image-upload'
+										/>
+
+										<Upload className='text-muted' />
+										<span className='text-sm text-muted'>{t('project.form.imageAlert')}</span>
+										<Button
+											variant='outline'
+											className='rounded-full'
+											type='button'
+											onClick={() => fileInputRef.current?.click()}
+										>
+											{t('project.form.selectImage')}
+										</Button>
+									</div>
+								)}
 							</Form.Control>
 							<Form.Message />
 						</Form.Item>

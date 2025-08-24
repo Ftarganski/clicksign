@@ -2,13 +2,15 @@ import { projectApi } from '@/api';
 import type { Project } from '@/types';
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query';
 
-export function useCreateProject() {
+export function useCreateProject(options?: UseMutationOptions<Project, Error, Project>) {
 	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: (project: Project) => projectApi.create(project),
-		onSuccess: () => {
+		onSuccess: (...args) => {
 			queryClient.invalidateQueries({ queryKey: ['projects'] });
+			options?.onSuccess?.(...args);
 		},
+		onError: options?.onError,
 	});
 }
 

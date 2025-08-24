@@ -2,14 +2,17 @@ import { HeaderComponent, ProjectForm } from '@/components/modules';
 
 import { generateBase64Id } from '@/helpers/helperHash64';
 import { useCreateProject, useUpdateProject } from '@/hooks/mutations/useProjectMutation';
-import { projectSchema } from '@/validators';
+import { getProjectSchema } from '@/validators';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 import z from 'zod';
 
 export interface ProjectFormPageProps {}
 
+const { t } = useTranslation();
+const projectSchema = getProjectSchema(t);
 type FormData = z.infer<typeof projectSchema> & { id?: string; isFavorite?: boolean };
 
 const parseProject = (raw: string | undefined): Partial<FormData> | null => {
@@ -36,11 +39,29 @@ const getDefaultValues = (project: Partial<FormData> | null): Partial<FormData> 
 
 const ProjectFormPage: FC<ProjectFormPageProps> = ({ ...rest }) => {
 	const { t } = useTranslation();
-	const createProject = useCreateProject();
-	const updateProject = useUpdateProject();
+
 	const navigate = useNavigate();
 	const search: any = useSearch({ from: '/_authenticated/projects/projectform/' });
 	const mode = search?.mode === 'update' ? 'update' : 'create';
+
+	const createProject = useCreateProject({
+		onSuccess: () => {
+			toast.success(t('commons.toasts.projectCreatedSuccess'));
+		},
+		onError: () => {
+			toast.error(t('commons.toasts.projectCreatedError'));
+		},
+	});
+
+	const updateProject = useUpdateProject({
+		onSuccess: () => {
+			toast.success(t('commons.toasts.projectUpdatedSuccess'));
+		},
+		onError: () => {
+			toast.error(t('commons.toasts.projectUpdatedError'));
+		},
+	});
+
 	const project = useMemo(() => parseProject(search?.project), [search?.project]);
 	const defaultValues = useMemo(() => getDefaultValues(project), [project]);
 
