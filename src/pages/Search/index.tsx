@@ -10,7 +10,6 @@ const SearchPage = (props: any) => {
 	const { searchValue = '', searchResults = [] } =
 		(router.state.location.state as { searchValue?: string; searchResults?: any[] } | undefined) || {};
 
-	console.log(searchResults);
 	return (
 		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8 ' {...props}>
 			<HeaderComponent title={t('search.title')} buttonText={t('commons.buttons.back')} />

@@ -1,9 +1,10 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
-import React from 'react';
+
+import { ReactNode } from 'react';
 import { useCreateProject, useDeleteProject, useUpdateProject } from '../../src/hooks/mutations/useProjectMutation';
 
-const wrapper = ({ children }: { children: React.ReactNode }) => (
+const wrapper = ({ children }: { children: ReactNode }) => (
 	<QueryClientProvider client={new QueryClient()}>{children}</QueryClientProvider>
 );
 

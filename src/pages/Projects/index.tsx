@@ -2,7 +2,7 @@ import { EmptyComponent, ListProjects, SearchComponent } from '@/components/modu
 import { useListProjects } from '@/hooks/queries';
 import { useNavigate } from '@tanstack/react-router';
 import { PlusCircle, Search } from 'lucide-react';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface ProjectsPageProps {}
@@ -35,16 +35,21 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 		return () => document.removeEventListener('mousedown', handleClick);
 	}, [searchOpen]);
 
-	const handleSearchDone = (val?: string) => {
-		const search = (val ?? searchValue).toLowerCase();
-		if (search.length < 3) return;
-		const filtered = (projects.data || []).filter((p: any) => (p.name || '').toLowerCase().includes(search));
-		navigate({
-			to: '/projects/search',
-			state: { searchValue: val ?? searchValue, searchResults: filtered } as any,
-		});
-		setSearchOpen(false);
-	};
+	const handleSearchDone = useCallback(
+		(val?: string) => {
+			const search = (val ?? searchValue).toLowerCase();
+			if (search.length < 3) return;
+
+			const filtered = (projects.data || []).filter((p: any) => (p.name || '').toLowerCase().includes(search));
+
+			navigate({
+				to: '/projects/search',
+				state: { searchValue: val ?? searchValue, searchResults: filtered } as any,
+			});
+			setSearchOpen(false);
+		},
+		[searchValue, projects.data, navigate]
+	);
 
 	return (
 		<div className='container max-w-[1280px] mx-auto w-full h-full flex flex-col gap-6 p-8' {...rest}>

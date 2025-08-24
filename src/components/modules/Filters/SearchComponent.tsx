@@ -1,7 +1,7 @@
 import { Button, Input } from '@/components/ui';
 import { useSearchHistory } from '@/hooks/useSearchHistory';
 import { Clock, Search, X } from 'lucide-react';
-import { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface SearchComponentProps {
 	value: string;
@@ -32,23 +32,32 @@ const SearchComponent: FC<SearchComponentProps> = ({ value, placeholder, onFilte
 		[onFilterChange]
 	);
 
-	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter' && value && value.length >= 3) {
-			addSearch(value);
-			setHistory(getHistory());
-			if (onSearchDone) onSearchDone(value);
-		}
-	};
+	const handleKeyDown = useCallback(
+		(e: KeyboardEvent<HTMLInputElement>) => {
+			if (e.key === 'Enter' && value && value.length >= 3) {
+				addSearch(value);
+				setHistory(getHistory());
+				if (onSearchDone) onSearchDone(value);
+			}
+		},
+		[value, addSearch, getHistory, onSearchDone]
+	);
 
-	const handleSelectHistory = (item: string) => {
-		if (onSearchDone) onSearchDone(item);
-	};
+	const handleSelectHistory = useCallback(
+		(item: string) => {
+			if (onSearchDone) onSearchDone(item);
+		},
+		[onSearchDone]
+	);
 
-	const handleRemoveHistory = (item: string) => {
-		const newHistory = history.filter((h) => h !== item);
-		localStorage.setItem('search_history', JSON.stringify(newHistory));
-		setHistory(newHistory);
-	};
+	const handleRemoveHistory = useCallback(
+		(item: string) => {
+			const newHistory = history.filter((h) => h !== item);
+			localStorage.setItem('search_history', JSON.stringify(newHistory));
+			setHistory(newHistory);
+		},
+		[history]
+	);
 
 	return (
 		<div className='flex flex-col gap-0 relative w-full' {...rest}>

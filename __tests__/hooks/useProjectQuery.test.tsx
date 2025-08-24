@@ -1,12 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
-import React from 'react';
+
+import { ReactNode } from 'react';
 import * as projectApi from '../../src/api/projectApi';
 import { useGetProject, useListProjects } from '../../src/hooks/queries/useProjectQuery';
 
 jest.mock('../../src/api/projectApi');
 
-const wrapper = ({ children }: { children: React.ReactNode }) => (
+const wrapper = ({ children }: { children: ReactNode }) => (
 	<QueryClientProvider client={new QueryClient()}>{children}</QueryClientProvider>
 );
 

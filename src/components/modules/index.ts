@@ -32,18 +32,8 @@ export type { HeaderBarProps } from './HeaderBar';
 export { default as HeaderComponent } from './HeaderComponent';
 export type { HeaderComponentProps } from './HeaderComponent';
 
-export { default as LanguageSelector } from './LanguageSelector';
-export type { LanguageSelectorProps } from './LanguageSelector';
-
-export { default as PaginationAdvanced } from './PaginationAdvanced';
-export type { PaginationAdvancedProps } from './PaginationAdvanced';
-
 export { default as TextTooltip } from './TextTooltip';
 export type { TextTooltipProps } from './TextTooltip';
-
-// TABLE
-export { default as TableGeneric } from './Table/TableGeneric';
-export type { TableGenericProps } from './Table/TableGeneric';
 
 // PROJECTS
 export { default as CardProject } from './Projects/CardProject';

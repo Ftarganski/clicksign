@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedProjectsIndexRouteImport } from './routes/_authenticated/projects/index'
-import { Route as AuthenticatedProjectsIdRouteImport } from './routes/_authenticated/projects/$id'
 import { Route as AuthenticatedProjectsSearchIndexRouteImport } from './routes/_authenticated/projects/search/index'
 import { Route as AuthenticatedProjectsProjectformIndexRouteImport } from './routes/_authenticated/projects/projectform/index'
 
@@ -31,11 +30,6 @@ const AuthenticatedProjectsIndexRoute =
     path: '/projects/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedProjectsIdRoute = AuthenticatedProjectsIdRouteImport.update({
-  id: '/projects/$id',
-  path: '/projects/$id',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
 const AuthenticatedProjectsSearchIndexRoute =
   AuthenticatedProjectsSearchIndexRouteImport.update({
     id: '/projects/search/',
@@ -51,14 +45,12 @@ const AuthenticatedProjectsProjectformIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
   '/projects/projectform': typeof AuthenticatedProjectsProjectformIndexRoute
   '/projects/search': typeof AuthenticatedProjectsSearchIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
   '/projects/projectform': typeof AuthenticatedProjectsProjectformIndexRoute
   '/projects/search': typeof AuthenticatedProjectsSearchIndexRoute
@@ -67,31 +59,19 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/_authenticated/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/_authenticated/projects/': typeof AuthenticatedProjectsIndexRoute
   '/_authenticated/projects/projectform/': typeof AuthenticatedProjectsProjectformIndexRoute
   '/_authenticated/projects/search/': typeof AuthenticatedProjectsSearchIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/projects/$id'
-    | '/projects'
-    | '/projects/projectform'
-    | '/projects/search'
+  fullPaths: '/' | '/projects' | '/projects/projectform' | '/projects/search'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/projects/$id'
-    | '/projects'
-    | '/projects/projectform'
-    | '/projects/search'
+  to: '/' | '/projects' | '/projects/projectform' | '/projects/search'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/_authenticated/projects/$id'
     | '/_authenticated/projects/'
     | '/_authenticated/projects/projectform/'
     | '/_authenticated/projects/search/'
@@ -125,13 +105,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProjectsIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/projects/$id': {
-      id: '/_authenticated/projects/$id'
-      path: '/projects/$id'
-      fullPath: '/projects/$id'
-      preLoaderRoute: typeof AuthenticatedProjectsIdRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/_authenticated/projects/search/': {
       id: '/_authenticated/projects/search/'
       path: '/projects/search'
@@ -150,14 +123,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedProjectsIdRoute: typeof AuthenticatedProjectsIdRoute
   AuthenticatedProjectsIndexRoute: typeof AuthenticatedProjectsIndexRoute
   AuthenticatedProjectsProjectformIndexRoute: typeof AuthenticatedProjectsProjectformIndexRoute
   AuthenticatedProjectsSearchIndexRoute: typeof AuthenticatedProjectsSearchIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedProjectsIdRoute: AuthenticatedProjectsIdRoute,
   AuthenticatedProjectsIndexRoute: AuthenticatedProjectsIndexRoute,
   AuthenticatedProjectsProjectformIndexRoute:
     AuthenticatedProjectsProjectformIndexRoute,

@@ -5,7 +5,7 @@ import { useListProjects } from '@/hooks/queries';
 import { Project } from '@/types';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { PlusCircle } from 'lucide-react';
-import { FC, useState } from 'react';
+import { FC, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import FavoriteComponent from '../Filters/FavoriteComponent';
@@ -42,11 +42,14 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 		},
 	});
 
-	const sortOptions = [
-		{ value: 'name' as keyof Project, label: t('projects.filters.alphabetical') },
-		{ value: 'startDate' as keyof Project, label: t('projects.filters.recentStart') },
-		{ value: 'endDate' as keyof Project, label: t('projects.filters.closestEnd') },
-	];
+	const sortOptions = useMemo(
+		() => [
+			{ value: 'name' as keyof Project, label: t('projects.filters.alphabetical') },
+			{ value: 'startDate' as keyof Project, label: t('projects.filters.recentStart') },
+			{ value: 'endDate' as keyof Project, label: t('projects.filters.closestEnd') },
+		],
+		[t]
+	);
 
 	const { data: sortedProjects } = useProcessedData({
 		data: projects.data || [],
@@ -55,22 +58,24 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 		sortDirection: 'asc',
 	});
 
-	const handleDeleteClick = (project: Project) => {
+	const handleDeleteClick = useCallback((project: Project) => {
 		setProjectToDelete(project);
 		setDeleteModalOpen(true);
-	};
+	}, []);
 
-	const handleConfirmDelete = async () => {
+	const handleConfirmDelete = useCallback(async () => {
 		if (projectToDelete) {
 			await deleteProject.mutateAsync(projectToDelete.id);
 			setProjectToDelete(null);
 		}
-	};
+	}, [deleteProject, projectToDelete]);
 
-	const handleFavorite = async (project: Project) => {
-		await updateProject.mutateAsync({ ...project, isFavorite: !project.isFavorite });
-	};
-
+	const handleFavorite = useCallback(
+		async (project: Project) => {
+			await updateProject.mutateAsync({ ...project, isFavorite: !project.isFavorite });
+		},
+		[updateProject]
+	);
 	return (
 		<div className='flex flex-col items-start gap-10 h-full' {...rest}>
 			<div className='flex flex-row justify-between items-start gap-10 w-full'>
