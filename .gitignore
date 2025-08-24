@@ -6,5 +6,4 @@ dist-ssr
 *.local
 
 *.env
-
-
+*.tanstack
