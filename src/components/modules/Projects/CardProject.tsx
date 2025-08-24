@@ -25,7 +25,7 @@ export const CardProject: FC<CardProjectProps> = ({
 	const { t } = useTranslation();
 
 	return (
-		<Card.Root className='bg-card border-border gap-6 w-[300px] py-0 rounded-2xl' {...rest}>
+		<Card.Root className='bg-card border-border gap-6 w-full sm:w-[346px] py-0 rounded-2xl' {...rest}>
 			<Card.Header
 				className='h-[208px] bg-primary rounded-t-2xl pt-6 px-0 flex items-end justify-end bg-cover bg-center'
 				style={{
@@ -50,12 +50,22 @@ export const CardProject: FC<CardProjectProps> = ({
 							<CircleEllipsis size={28} className='text-primary-foreground' fill={'#ffffff'} />
 						</Popover.Trigger>
 						<Popover.Content className='p-0 w-52' align='end'>
-							<Button variant='link' size='lg' className='border-none w-full justify-start p-4' onClick={handleEdit}>
+							<Button
+								variant='link'
+								size='lg'
+								className='border-none w-full justify-start p-4 hover:bg-muted-foreground'
+								onClick={handleEdit}
+							>
 								<SquarePen />
 								<div>{t('commons.buttons.edit')}</div>
 							</Button>
 							<Separator />
-							<Button variant='link' size='lg' className='border-none w-full justify-start p-4' onClick={handleDelete}>
+							<Button
+								variant='link'
+								size='lg'
+								className='border-none w-full justify-start p-4 hover:bg-muted-foreground'
+								onClick={handleDelete}
+							>
 								<Trash />
 								<div>{t('commons.buttons.delete')}</div>
 							</Button>
@@ -64,10 +74,14 @@ export const CardProject: FC<CardProjectProps> = ({
 				</div>
 			</Card.Header>
 			<Card.Content className='flex flex-col justify-between gap-2 h-[180px] pb-6'>
-				<div className='text-primary text-2xl font-extrabold'>{getHighlightedName(project.name, highlight)}</div>
+				<div className='ellipsis truncate overflow-hidden whitespace-nowrap text-primary text-2xl font-extrabold'>
+					{getHighlightedName(project.name, highlight)}
+				</div>
 				<div className='flex flex-row gap-2'>
 					<div className='text-secondary-foreground text-base font-bold'>{t('project.client')}</div>
-					<div className='text-secondary-foreground text-base font-normal'>{project.client}</div>
+					<div className='ellipsis truncate overflow-hidden whitespace-nowrap text-secondary-foreground text-base font-normal'>
+						{project.client}
+					</div>
 				</div>
 				<Separator />
 				<div className='flex flex-row gap-3'>

@@ -49,7 +49,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 							<Form.Control>
 								<Input {...field} placeholder={t('project.form.namePlaceholder')} className='w-full bg-card' />
 							</Form.Control>
-							<Form.Message />
+							<Form.Message className='text-xs' />
 						</Form.Item>
 					)}
 				/>
@@ -64,7 +64,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 							<Form.Control>
 								<Input {...field} placeholder={t('project.form.clientPlaceholder')} className='w-full bg-card' />
 							</Form.Control>
-							<Form.Message />
+							<Form.Message className='text-xs' />
 						</Form.Item>
 					)}
 				/>
@@ -95,7 +95,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 										displayFormat={(date) => (date ? date.toLocaleDateString('pt-BR') : '')}
 									/>
 								</Form.Control>
-								<Form.Message />
+								<Form.Message className='text-xs' />
 							</Form.Item>
 						)}
 					/>
@@ -126,7 +126,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 										displayFormat={(date) => (date ? date.toLocaleDateString('pt-BR') : '')}
 									/>
 								</Form.Control>
-								<Form.Message />
+								<Form.Message className='text-xs' />
 							</Form.Item>
 						)}
 					/>
@@ -147,10 +147,10 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 											className='rounded-lg object-cover w-full h-96 cover-full border border-border shadow'
 										/>
 										<div
-											className='absolute flex items-center justify-center top-4 right-4 rounded-full bg-card h-8 w-8 hover:cursor-pointer'
+											className='absolute flex items-center justify-center text-muted hover:text-primary-foreground top-4 right-4 rounded-full bg-card h-8 w-8 hover:bg-muted-foreground hover:cursor-pointer'
 											onClick={() => field.onChange('')}
 										>
-											<Trash className='text-muted' size={20} />
+											<Trash className='' size={20} />
 										</div>
 									</div>
 								) : (
@@ -187,7 +187,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ onSubmit, defaultValues, mode = 'cr
 									</div>
 								)}
 							</Form.Control>
-							<Form.Message />
+							<Form.Message className='text-xs' />
 						</Form.Item>
 					)}
 				/>

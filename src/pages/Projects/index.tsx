@@ -52,7 +52,7 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ ...rest }) => {
 	);
 
 	return (
-		<div className='container max-w-[1536px] mx-auto w-full h-full flex flex-col gap-6 p-8' {...rest}>
+		<div className='container max-w-[1536px] mx-auto w-full h-full flex flex-col gap-6 p-8 ' {...rest}>
 			<div className='absolute top-7 right-7 items-center'>
 				<Search className='text-card cursor-pointer' onClick={() => setSearchOpen(true)} />
 			</div>

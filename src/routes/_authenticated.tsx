@@ -14,9 +14,9 @@ export default function AuthLayout() {
 	return (
 		<Suspense>
 			<Toaster />
-			<div className='flex flex-col h-screen'>
+			<div className='flex flex-col min-h-screen'>
 				<HeaderBar title={t('system.title')} />
-				<div className='flex-1 h-screen'>
+				<div className='flex-1 min-h-screen'>
 					<Outlet />
 				</div>
 			</div>
