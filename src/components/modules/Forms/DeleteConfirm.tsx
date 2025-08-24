@@ -38,8 +38,8 @@ const DeleteConfirm: FC<DeleteConfirmProps> = ({
 					<Dialog.Title className='text-center font-semibold text-primary py-4'>{title}</Dialog.Title>
 					<Separator />
 					<Dialog.Description className='flex flex-col text-center gap-4 p-4'>
-						<div className='text-md text-muted'>{description}</div>
-						<div className='font-medium text-2xl text-secondary'>{name}</div>
+						<span className='text-md text-muted'>{description}</span>
+						<span className='font-medium text-2xl text-secondary'>{name}</span>
 					</Dialog.Description>
 				</Dialog.Header>
 				<Dialog.Footer className='gap-6'>

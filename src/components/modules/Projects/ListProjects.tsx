@@ -24,6 +24,7 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [projectToDelete, setProjectToDelete] = useState<Project | null>(null);
 	const navigate = useNavigate();
+
 	const deleteProject = useDeleteProject({
 		onSuccess: () => {
 			toast.success(t('commons.toasts.projectDeletedSuccess'));
@@ -76,6 +77,7 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 		},
 		[updateProject]
 	);
+
 	return (
 		<div className='flex flex-col items-start gap-10 h-full' {...rest}>
 			<div className='flex flex-row justify-between items-start gap-10 w-full'>
@@ -103,19 +105,23 @@ const ListProjects: FC<ListProjectsProps> = ({ highlight = '', ...rest }) => {
 					</Link>
 				</div>
 			</div>
-			<div className='flex flex-wrap gap-4'>
-				{sortedProjects.map((project: Project, idx: number) => (
-					<CardProject
-						key={project.id || idx}
-						project={project}
-						highlight={highlight && highlight.length >= 3 ? highlight : ''}
-						handleEdit={() =>
-							navigate({ to: '/projects/projectform', search: { project: JSON.stringify(project), mode: 'update' } })
-						}
-						handleDelete={() => handleDeleteClick(project)}
-						handleFavorite={() => handleFavorite(project)}
-					/>
-				))}
+			<div className='flex flex-wrap gap-4 w-full'>
+				{showFavorites && sortedProjects.length === 0 ? (
+					<div className='text-center w-full text-muted pt-10'>{t('commons.fallbacks.noFavorites')}</div>
+				) : (
+					sortedProjects.map((project: Project, idx: number) => (
+						<CardProject
+							key={project.id || idx}
+							project={project}
+							highlight={highlight && highlight.length >= 3 ? highlight : ''}
+							handleEdit={() =>
+								navigate({ to: '/projects/projectform', search: { project: JSON.stringify(project), mode: 'update' } })
+							}
+							handleDelete={() => handleDeleteClick(project)}
+							handleFavorite={() => handleFavorite(project)}
+						/>
+					))
+				)}
 			</div>
 			<DeleteConfirm
 				isOpen={deleteModalOpen}
