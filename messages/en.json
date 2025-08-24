@@ -1,19 +1,82 @@
 {
+	"system": {
+		"title": "Project Manager"
+	},
 	"commons": {
 		"fallbacks": {
-			"notFound": "Page not found"
+			"notFound": "Page not found",
+			"noResults": "Your search returned no projects"
+		},
+		"buttons": {
+			"addProject": "New project",
+			"back": "Back",
+			"removeHistory": "Remove history",
+			"save": "Save project",
+			"saving": "Saving project...",
+			"edit": "Edit",
+			"delete": "Delete",
+			"cancel": "Cancel",
+			"confirm": "Confirm"
+		},
+		"toasts": {
+			"projectCreatedSuccess": "Project created successfully!",
+			"projectCreatedError": "Error creating project.",
+			"projectUpdatedSuccess": "Project updated successfully!",
+			"projectUpdatedError": "Error updating project.",
+			"projectDeletedSuccess": "Project deleted successfully!",
+			"projectDeletedError": "Error deleting project."
 		}
 	},
 	"projects": {
 		"title": "Projects",
-		"description": "Manage your projects efficiently"
+		"description": "Manage your projects efficiently",
+		"emptyList": {
+			"title": "No projects",
+			"description": "Click the button below to create your first project and manage it.",
+			"button": "New Project"
+		},
+		"filters": {
+			"favorites": "Favorites only",
+			"alphabetical": "Alphabetical order",
+			"recentStart": "Most recently started",
+			"closestEnd": "Closest deadline",
+			"searchPlaceholder": "Search projects..."
+		}
 	},
 	"project": {
 		"title": "Project",
-		"description": "Manage your project"
+		"description": "Manage your project",
+		"client": "Client:",
+		"form": {
+			"newTitle": "New project",
+			"editTitle": "Edit project",
+			"name": "Project name",
+			"namePlaceholder": "Enter the project name",
+			"client": "Client",
+			"clientPlaceholder": "Enter the client's name",
+			"startDate": "Start date",
+			"startDatePlaceholder": "Select the start date",
+			"endDate": "End date",
+			"endDatePlaceholder": "Select the end date",
+			"cover": "Project cover",
+			"selectImage": "Select",
+			"imageAlert": "Choose a .jpg or .png image from your device",
+			"required": "(Required)",
+			"errors": {
+				"nameRequired": "Please enter the project name",
+				"nameMinWords": "Please enter at least two words",
+				"clientRequired": "Please enter at least one word",
+				"startDateRequired": "Select a valid date",
+				"endDateRequired": "Select a valid date"
+			}
+		},
+		"delete": {
+			"title": "Delete project",
+			"description": "This action will permanently delete the project:"
+		}
 	},
 	"search": {
-		"title": "Search",
+		"title": "Search results",
 		"description": "Find what you need quickly and efficiently"
 	}
 }
