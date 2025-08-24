@@ -88,6 +88,14 @@ clicksign/
 
 ---
 
+## 🗄️ Backend Simulado (LocalStorage)
+
+Este projeto utiliza uma API simulada baseada em LocalStorage do navegador, válida apenas para a sessão atual. Todos os dados de projetos, favoritos, buscas e alterações são persistidos localmente e não são compartilhados entre diferentes navegadores, dispositivos ou sessões.
+
+> **Atenção:** Para uso em produção, é necessário implementar e conectar uma API real para persistência e integração dos dados.
+
+---
+
 ## 💻 Instalação & Execução
 
 ### Pré-requisitos
