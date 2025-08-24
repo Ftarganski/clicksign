@@ -1,5 +1,5 @@
 import { Button, Input } from '@/components/ui';
-import { useSearchHistory } from '@/hooks/useSearchHistory';
+import { useSearchHistory } from '@/hooks';
 import { Clock, Search, X } from 'lucide-react';
 import { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
@@ -13,6 +13,7 @@ export interface SearchComponentProps {
 const SearchComponent: FC<SearchComponentProps> = ({ value, placeholder, onFilterChange, onSearchDone, ...rest }) => {
 	const { getHistory, addSearch } = useSearchHistory();
 	const [history, setHistory] = useState<string[]>([]);
+	const [error, setError] = useState<string | null>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
@@ -34,7 +35,12 @@ const SearchComponent: FC<SearchComponentProps> = ({ value, placeholder, onFilte
 
 	const handleKeyDown = useCallback(
 		(e: KeyboardEvent<HTMLInputElement>) => {
-			if (e.key === 'Enter' && value && value.length >= 3) {
+			if (e.key === 'Enter') {
+				if (!value || value.length < 3) {
+					setError('Digite pelo menos 3 caracteres para buscar.');
+					return;
+				}
+				setError(null);
 				addSearch(value);
 				setHistory(getHistory());
 				if (onSearchDone) onSearchDone(value);
@@ -71,9 +77,17 @@ const SearchComponent: FC<SearchComponentProps> = ({ value, placeholder, onFilte
 					className='pl-9 h-20 rounded-none'
 					placeholder={placeholder}
 				/>
+				{error && (
+					<span className='absolute left-0 top-full w-full flex flex-row items-center px-6 py-2 bg-background border text-xs text-destructive border-border  z-20 '>
+						{error}
+					</span>
+				)}
 			</div>
 			{history.length > 0 && (
-				<div className='absolute left-0 top-full w-full bg-background border border-border rounded-b-xl shadow-lg z-50'>
+				<div
+					className='absolute left-0 w-full bg-background border border-border rounded-b-xl shadow-lg z-50'
+					style={error ? { top: 'calc(100% + 2rem)' } : { top: '100%' }}
+				>
 					{history.map((item, idx) => (
 						<div
 							key={item + idx}

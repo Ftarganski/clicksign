@@ -10,7 +10,9 @@
 
 **Bem-vindo ao Clicksign Test SPA!** 🎉
 
-_Uma aplicação React + Vite + Tailwind focada em arquitetura moderna, i18n, componentes reutilizáveis e experiência de usuário responsiva._
+Deploy em [Clicksign Test](https://clicksign-two.vercel.app)
+
+_Uma aplicação React + Vite + Tailwind focada em arquitetura moderna, componentes reutilizáveis e experiência de usuário responsiva._
 
 </div>
 
@@ -19,29 +21,32 @@ _Uma aplicação React + Vite + Tailwind focada em arquitetura moderna, i18n, co
 ## 🗂️ Estrutura do Projeto
 
 ```
-clicksign-test/
-├── messages/
-│   ├── helpers/               # Testes unitários dos helpers
-│   └── hooks/                 # Testes unitários dos hooks customizados
-├── messages/                  # Arquivos de internacionalização (en, pt)
-├── public/                    # Assets estáticos (favicon, imagens, etc)
+clicksign/
+├── __tests__/                # Testes unitários (helpers, hooks)
+│   ├── helpers/              # Testes dos helpers
+│   └── hooks/                # Testes dos hooks customizados
+├── messages/                 # Internacionalização (en, pt)
+├── public/                   # Assets estáticos (favicon, imagens, etc)
 ├── src/
-│   ├── api/                   # APIs para Pokémons, Berries, etc
-│   ├── components/            # Componentes de UI e módulos de domínio
-│   ├── helpers/               # Funções utilitárias
-│   ├── hooks/                 # React hooks customizados
-│   ├── pages/                 # Páginas principais da aplicação
-│   ├── routes/                # Rotas e layouts
-│   ├── styles/                # Estilos globais (Tailwind)
-│   ├── types/                 # Tipos TypeScript
-│   └── utils/                 # Utilidades gerais
+│   ├── api/                  # APIs de domínio (ex: projetos)
+│   ├── components/           # Componentes de UI e módulos de domínio
+│   │   ├── modules/          # Componentes de domínio (Fallbacks, Filters, Forms, Header, Projects, etc)
+│   │   └── ui/               # Componentes de UI reutilizáveis (botão, input, tabela, etc)
+│   ├── helpers/              # Funções utilitárias
+│   ├── hooks/                # React hooks customizados
+│   ├── pages/                # Páginas principais da aplicação
+│   ├── routes/               # Rotas e layouts
+│   ├── styles/               # Estilos globais (Tailwind)
+│   ├── types/                # Tipos TypeScript
+│   ├── utils/                # Utilidades gerais
+│   └── validators/           # Schemas de validação
 ├── ... (configs, scripts, etc)
 ```
 
 ### 🧩 Arquitetura & Princípios
 
-- **Componentização**: UI dividida em módulos reutilizáveis (Cards, Tabelas, Filtros, Sidebar, etc)
-- **Hooks customizados**: `usePagination`, `useMobile`, `useThemeToggle`, `useProcessedData` e outros
+- **Componentização**: UI dividida em módulos reutilizáveis (Cards, Filtros, Formulários, Header, etc)
+- **Hooks customizados**: `useMobile`, `useProcessedData`, `useSearchHistory` e outros
 - **i18n**: Suporte a inglês e português via arquivos em `messages/`
 - **SOLID & Clean Code**: Separação de responsabilidades, nomes claros, funções pequenas, tipagem forte
 - **Tailwind CSS**: Design moderno, responsivo, com tokens customizados e animações
@@ -49,26 +54,37 @@ clicksign-test/
 
 ---
 
-## ✨ Funcionalidades
+## ✨ Funcionalidades Implementadas
 
-- � **Pokémons, Berries e Itens**: Listagem, busca, filtros e detalhes
-- 🔍 **Busca & Filtros**: Por nome, tipo, status, etc
-- � **Detalhes**: Painéis detalhados com informações, stats, sprites e ações
-- 🕹️ **Estados de UX**: Loading, erro, vazio, feedback visual
-- 💾 **Persistência**: Filtros e preferências salvos no localStorage
-- 📱 **Responsivo**: Layout adaptado para desktop e mobile
-- 🌍 **Internacionalização**: Troca de idioma em tempo real
+- Exibição inicial sem nenhum projeto cadastrado, conforme design
+- Exibição do título da página e total de projetos cadastrados
+- Filtro para exibir apenas projetos favoritos
+- Ordenação da listagem por:
+  - Ordem alfabética (padrão)
+  - Projetos iniciados mais recentemente
+  - Projetos próximos à data de finalização
+- Página com formulário de criação de projeto
+- Página com formulário de edição de projeto
+- Modal de confirmação de remoção
+- Favoritar/desfavoritar projetos
+- Barra de busca (mínimo 3 caracteres para disparar)
+- Histórico das últimas 5 buscas recentes
+- Highlight no texto dos resultados que correspondam à busca
 
 ---
 
 ## ⚡ Performance & Qualidade
 
-- 🔄 **Estados de carregamento** com loadings
-- ❌ **Tratamento de erros** com mensagens claras
-- � **Validação em tempo real** nos formulários
-- 🎭 **Feedback visual** para todas as ações
+- 🎯 **Hooks otimizados** com useCallback e useMemo
+- 🔄 **Componentes memoizados** para evitar re-renderizações
+- ❌ **Tratamento de erros** com mensagens claras e componentes dedicados
+- 🕹️ **Feedback visual** para todas as ações (sucesso, erro, vazio)
+- 💾 **Persistência**: Filtros, favoritos e preferências salvos no localStorage
+- 📱 **Responsivo**: Layout adaptado para desktop e mobile
+- � **Internacionalização**: Troca de idioma em tempo real
 - ♿ **Acessibilidade total**
 - 🧹 **Linting e formatação** automáticos
+- 🔒 **Documentação** estilo TypeScript com JSDoc
 
 ---
 
@@ -76,7 +92,7 @@ clicksign-test/
 
 ### Pré-requisitos
 
-- **Node.js 18.3+**
+- **Node.js >=20**
 - **npm** ou **yarn**
 - **Git**
 
@@ -125,15 +141,27 @@ npx jest --config=jest.config.cjs __tests__/helpers
 
 ### Exemplos de cobertura
 
-- Testes de helpers: extração de ID de URL, truncamento de texto, internacionalização, sprites, etc.
-- Testes de hooks: paginação, responsividade, tema, queries de API (mockadas).
+- Testes de helpers: formatação de datas, hash, manipulação de imagens, extração de iniciais, truncamento de texto, internacionalização, etc.
+- Testes de hooks: responsividade, queries e mutations de API (mockadas), histórico de buscas.
 
 ### Boas práticas
 
-- Use mocks para APIs e localStorage.
-- Separe testes por domínio (helpers, hooks, components).
-- Utilize `jest.spyOn` para funções globais e side effects.
-- Garanta que todos os novos helpers e hooks tenham testes!
+- Uso de mocks para APIs e localStorage.
+- Separação de testes por domínio (helpers, hooks, components).
+- Utilização de `jest.spyOn` para funções globais e side effects.
+- Garantia de que todos os helpers e hooks tenham testes!
+
+---
+
+## ⚡ Por que você vai gostar
+
+- 🏎️ **Super Rápido:** Alimentado pelo Vite para recarregamentos instantâneos.
+- 🧩 **Modular:** Limpo, escalável e fácil de estender.
+- 🎨 **UI Bonita:** TailwindCSS para um visual moderno e responsivo.
+- 🌍 **Pronto para i18n:** Inglês e Português nativos.
+- 🧠 **TypeScript:** Código seguro e confiável com tipagem.
+- 🧪 **Fácil de Testar:** Separação clara entre lógica e interface.
+- 📱 **Amigável para Mobile:** Funciona bem em qualquer dispositivo.
 
 ---
 
@@ -162,6 +190,7 @@ npx jest --config=jest.config.cjs __tests__/helpers
 - **Prettier** para formatação
 - **Commits convencionais**
 - **JSDoc** para documentação
+- **PropTypes** para validações
 
 ---
 
@@ -183,7 +212,7 @@ Projeto licenciado sob **MIT License** - veja o arquivo [LICENSE](LICENSE).
 
 ## 🙏 Agradecimentos
 
-- **Pokémon** pela oportunidade
+- **Clicksign** pela oportunidade
 - **React** pelo framework
 - **Vite** pelo build tool
 - **Tailwind CSS** pelo design system
@@ -196,4 +225,3 @@ Projeto licenciado sob **MIT License** - veja o arquivo [LICENSE](LICENSE).
 **⭐ Se este projeto te ajudou, deixe uma estrela!**
 
 Feito com ☕ por **Ftarganski**
-s
